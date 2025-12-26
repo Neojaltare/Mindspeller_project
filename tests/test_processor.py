@@ -10,12 +10,12 @@ def processor():
     return EEGProcessor()
 
 def test_auto_scaling_logic(processor):
-    # Test Microvolts -> Should convert
+    # Test Microvolts
     uv_data = np.array([[50.0, -50.0]])
     scaled_uv = processor._scale_data(uv_data)
     assert scaled_uv[0, 0] == pytest.approx(0.00005)
     
-    # Test Volts -> Should stay same
+    # Test Volts 
     v_data = np.array([[0.00005, -0.00005]])
     scaled_v = processor._scale_data(v_data)
     assert scaled_v[0, 0] == pytest.approx(0.00005)
@@ -107,27 +107,26 @@ def test_all_artifact_session(processor):
     assert clean_psd.shape == mock_psds.shape
 
 
-    def test_band_metrics_calculation(processor):
-        """
-        Checks that the band metrics calculation is correct.
-        """
-        # dummy PSD: 1.0 everywhere
-        freqs = np.array([1, 2, 5, 10, 20, 40])
-        psd = np.ones(len(freqs)) 
-        
-        metrics = processor._calculate_band_metrics(psd, freqs)
-        
-        # In a PSD of all 1s, any average should be 1.0
-        assert metrics['Alpha'] == 1.0
-        # Focus Index (Beta/Alpha) should be 1.0 / 1.0 = 1.0
-        assert metrics['focus_index'] == 1.0
-        # Total power should be the mean of the array
-        assert metrics['Total_Power'] == 1.0
+def test_band_metrics_calculation(processor):
+    """
+    Checks that the band metrics calculation is correct.
+    """
+    # dummy PSD: 1.0 everywhere
+    freqs = np.array([1, 2, 5, 10, 20, 40])
+    psd = np.ones(len(freqs)) 
+    
+    metrics = processor._calculate_band_metrics(psd, freqs)
+    
+    # In a PSD of all 1s, any average should be 1.0
+    assert metrics['Alpha'] == 1.0
+    # Focus Index (Beta/Alpha) should be 1.0 / 1.0 = 1.0
+    assert metrics['focus_index'] == 1.0
+    # Total power should be the mean of the array
+    assert metrics['Total_Power'] == 1.0
 
 
 def test_quality_warning_trigger(processor):
     # Simulate the condition where no clean indices are found
-    # We can test the logic inside process_csv by mocking the behavior
     psd_data = np.random.rand(5, 1, 10) # 5 epochs
     noisy_indices = [0, 1, 2, 3, 4] # All 5 are noisy
     

@@ -7,7 +7,6 @@ class EEGProcessor:
         self.sfreq = sfreq  # 250Hz for Emotiv EPOC+
         self.window_size = window_size  # 30 seconds window size
         self.quality_warning = False
-        # Frequency band definitions
         self.bands = {
             'Delta': (0.5, 4),
             'Theta': (4, 8),
@@ -17,7 +16,7 @@ class EEGProcessor:
         }
     
     def process_csv(self, file_path):
-        """Main Orchestrator: High-level flow only."""
+        """Main function to process the EEG data and produce the output."""
         df = pd.read_csv(file_path)
         raw = self._prepare_raw_data(df)
         
@@ -36,7 +35,6 @@ class EEGProcessor:
         
         # Calculate Global Baseline (Clean epochs only)
         clean_indices = [i for i in range(len(psd_data)) if i not in noisy_indices]
-        
         if not clean_indices:
             # Fallback to all data but flag a warning
             clean_psd = psd_data
@@ -72,7 +70,7 @@ class EEGProcessor:
             mask = (freqs >= fmin) & (freqs <= fmax)
             metrics[band] = psd_spectrum[mask].mean()
         
-        # Ratios (Scientific Formulas)
+        # Ratios for the different cognitive state calculations
         metrics["focus_index"] = metrics["Beta"] / metrics["Alpha"]
         metrics["mind_wandering_index"] = metrics["Theta"] / metrics["Beta"]
         metrics["arousal_index"] = metrics["Beta"] / metrics["Theta"]
@@ -107,10 +105,11 @@ class EEGProcessor:
             return raw_values * 1e-6
         return raw_values
 
+
     def _classify_state(self, bp, global_avg_metrics, is_noisy=False):
             """
             Competitive classification: The state with the highest 
-            intensity ratio relative to baseline wins.
+            ratio relative to baseline wins.
             """
 
             scores_dict = {
@@ -121,7 +120,6 @@ class EEGProcessor:
             }
 
             # Create the DataFrame for the frontend scores history
-            # We map the keys to match your frontend SCORE_COLORS mapping
             formatted_scores = pd.DataFrame({
                 "drowsiness_score": [scores_dict["Drowsy"]],
                 "arousal_score": [scores_dict["High Arousal"]],
@@ -144,7 +142,7 @@ class EEGProcessor:
             return winning_state, formatted_scores
             
     def _aggregate_results(self, results, scores_list):
-        """Creates the session profile and includes the data quality flag."""
+        """Creates the session profile and includes the data quality flag. This is the output used by the frontend."""
         quality_warning = self.quality_warning
         total = len(results)
         counts = pd.Series(results).value_counts().to_dict()
