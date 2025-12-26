@@ -24,25 +24,6 @@ python main.py
 streamlit run Frontend_Streamlit.py
 
 
-1. Environment Setup
-Install the core dependencies in a new conda env
-
-See the list in Requirements.txt
-
-2. Launch the Backend API
-Open your terminal and start the processing engine. This must be running for the UI to function:
-
-python main.py
-
-The backend will initialize and listen for processing requests on port 8000.
-
-3. Launch the Frontend UI
-
-Open a new terminal tab and launch the web dashboard:
-
-streamlit run Frontend_Streamlit.py
-
-
 # The Processing Pipeline
 Preprocessing: Data is auto-scaled, bandpass filtered (0.5–45Hz), and average re-referenced.
 
