@@ -47,6 +47,6 @@ I set up a Peak-to-Peak (PTP) check. If a window swings more than 300μV, the sy
 
 Data Source
 
-dI used the Albasri (2019) Mendeley Dataset which seemed to perfectly fit the requirements of the project. It was the perfect choice for this task because the protocol specifically recorded subjects switching between relaxation and concentration tasks in 3-minute blocks—mirroring exactly what I’m trying to detect. I also tailored the backend to match the dataset's EMOTIV EPOC+ hardware specs, specifically setting the sampling rate to 250Hz and aligning the channel configurations to ensure the simulation was as realistic as possible. This code is therefore not flexible in detecting these parameters from the data, but this can be done as well quite easily. 
+I used the Albasri (2019) Mendeley Dataset which seemed to perfectly fit the requirements of the project. It was the perfect choice for this task because the protocol specifically recorded subjects switching between relaxation and concentration tasks in 3-minute blocks—mirroring exactly what I’m trying to detect. I also tailored the backend to match the dataset's EMOTIV EPOC+ hardware specs, specifically setting the sampling rate to 250Hz and aligning the channel configurations to ensure the simulation was as realistic as possible. This code is therefore not flexible in detecting these parameters from the data, but this can be done as well quite easily. 
 
 Dataset Reference: * Albasri (2019): "EEG dataset of Fusion relaxation and concentration moods." Mendeley Data, V1, doi: 10.17632/8c26dn6c7w.1.

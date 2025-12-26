@@ -7,6 +7,22 @@ Backend: A Python-based API (running on localhost:8000) that leverages MNE-Pytho
 
 Frontend: A Streamlit dashboard that handles file ingestion, asynchronous API communication, and interactive data visualization.
 
+
+# Quickstart
+# 1. Clone the repo
+git clone https://github.com/Neojaltare/Mindspeller_project.git
+cd MindSpeller_project
+
+# 2. Install dependencies
+pip install -r Requirements.txt
+
+# 3. Start Backend (Terminal 1)
+python main.py
+
+# 4. Start Frontend (Terminal 2)
+streamlit run app.py
+
+
 1. Environment Setup
 Install the core dependencies in a new conda env
 See the list in Requirements.txt
@@ -40,10 +56,10 @@ Drowsiness: θ/α ratio.
 
 Mind Wandering: θ/β ratio.
 
-Adaptive Baselining: Metrics are normalized against the "Clean" segments of the input data to ensure person-specific accuracy. This is provisional since we dont have any other baseline period here. 
+Adaptive Baselining: Metrics are normalized against the "Clean" segments of the input data to ensure person-specific variation is reflected in our output. This is provisional since we dont have any other baseline period here. 
 
 # Validation
 To run the automated unit tests:
 
 Bash
-python3 -m pytest
+python -m pytest
