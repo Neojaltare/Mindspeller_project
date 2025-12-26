@@ -11,6 +11,7 @@ Frontend: A Streamlit dashboard that handles file ingestion, asynchronous API co
 # Quickstart
 # 1. Clone the repo
 git clone https://github.com/Neojaltare/Mindspeller_project.git
+
 cd MindSpeller_project
 
 # 2. Install dependencies
@@ -25,17 +26,20 @@ streamlit run app.py
 
 1. Environment Setup
 Install the core dependencies in a new conda env
+
 See the list in Requirements.txt
 
 2. Launch the Backend API
 Open your terminal and start the processing engine. This must be running for the UI to function:
-Bash
+
 python main.py
+
 The backend will initialize and listen for processing requests on port 8000.
 
 3. Launch the Frontend UI
+
 Open a new terminal tab and launch the web dashboard:
-Bash
+
 streamlit run app.py
 
 
