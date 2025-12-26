@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+.env/
+.envrc
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+
+# Logs
+*.log
+
+# Credentials / secrets
+*.pem
+*.key
+*.env
+
+# IDE
+.vscode/
+.idea/
+
+Emotiv 30s EDF/
+Application_docs/
+Project.ipynb/
