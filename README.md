@@ -21,7 +21,7 @@ pip install -r Requirements.txt
 python main.py
 
 # 4. Start Frontend (Terminal 2)
-streamlit run app.py
+streamlit run Frontend_Streamlit.py
 
 
 1. Environment Setup
@@ -40,7 +40,7 @@ The backend will initialize and listen for processing requests on port 8000.
 
 Open a new terminal tab and launch the web dashboard:
 
-streamlit run app.py
+streamlit run Frontend_Streamlit.py
 
 
 # The Processing Pipeline
